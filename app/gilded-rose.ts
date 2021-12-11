@@ -29,7 +29,9 @@ export class GildedRose {
     item.sellIn--;
 
     if (item.name === backstageName) {
-      if (item.sellIn <= 5) {
+      if (item.sellIn < 0) {
+        item.quality = 0;
+      } else if (item.sellIn <= 5) {
         item.quality += 3;
       } else if (item.sellIn <= 10) {
         item.quality += 2;
@@ -38,18 +40,14 @@ export class GildedRose {
       }
     } else if (item.name === agedBrieName) {
       item.quality++;
-    } else {
-      item.quality--;
-    }
-
-    if (item.sellIn < 0) {
-      if (item.name === agedBrieName) {
+      if (item.sellIn < 0) {
         item.quality++;
-      } else if (item.name === backstageName) {
-        item.quality = 0;
-      } else {
+      }
+    } else {
+      if (item.sellIn < 0) {
         item.quality--;
       }
+      item.quality--;
     }
 
     if (item.quality < 0) {
