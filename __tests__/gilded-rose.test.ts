@@ -12,4 +12,10 @@ describe("Gilded Rose", function () {
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toEqual(5);
   });
+
+  it("Quality never goes negativity", function () {
+    const gildedRose = new GildedRose([new Item("Elixir of the Mongoose", 0, 0)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toEqual(0);
+  });
 });
