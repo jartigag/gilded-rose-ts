@@ -43,14 +43,12 @@ export class GildedRose {
     }
 
     if (item.sellIn < 0) {
-      if (item.name !== agedBrieName) {
-        if (item.name !== backstageName) {
-          item.quality--;
-        } else {
-          item.quality = 0;
-        }
-      } else {
+      if (item.name === agedBrieName) {
         item.quality++;
+      } else if (item.name === backstageName) {
+        item.quality = 0;
+      } else {
+        item.quality--;
       }
     }
 
