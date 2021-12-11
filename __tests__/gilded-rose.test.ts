@@ -25,9 +25,17 @@ describe("Gilded Rose", function () {
     expect(items[0].quality).toEqual(0);
   });
 
+  it("Aged Brie quality increase 1 by day", function () {
+    const gildedRose = new GildedRose([new Item("Aged Brie", 1, 0)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toEqual(1);
+  });
+
   it("Aged Brie quality increase when in date has passed", function () {
     const gildedRose = new GildedRose([new Item("Aged Brie", 0, 0)]);
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toEqual(2);
   });
+
+
 });
