@@ -26,15 +26,13 @@ export class GildedRose {
         item.quality = item.quality - 1;
       }
     } else {
-      if (item.quality < 50) {
-        item.quality = item.quality + 1;
-        if (item.name == backstageName) {
-          if (item.sellIn < 11 && item.quality < 50) {
-            item.quality = item.quality + 1;
-          }
-          if (item.sellIn < 6 && item.quality < 50) {
-            item.quality = item.quality + 1;
-          }
+      item.quality = item.quality + 1;
+      if (item.name == backstageName) {
+        if (item.sellIn < 11) {
+          item.quality = item.quality + 1;
+        }
+        if (item.sellIn < 6) {
+          item.quality = item.quality + 1;
         }
       }
     }
@@ -50,9 +48,12 @@ export class GildedRose {
         } else {
           item.quality = item.quality - item.quality;
         }
-      } else if (item.quality < 50) {
+      } else {
         item.quality = item.quality + 1;
       }
+    }
+    if (item.quality > 50 && item.name !== sulfurasName) {
+      item.quality = 50;
     }
     return item;
   }
