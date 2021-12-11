@@ -52,5 +52,10 @@ describe("Gilded Rose", function () {
     expect(items[0].quality).toEqual(50);
   });
 
-
+  it("'Sulfuras, Hand of Ragnaros' doesn't modify sellIn nor quality", function () {
+    const gildedRose = new GildedRose([new Item("Sulfuras, Hand of Ragnaros", 0, 80)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].sellIn).toEqual(0);
+    expect(items[0].quality).toEqual(80);
+  });
 });
