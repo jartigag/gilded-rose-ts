@@ -21,23 +21,18 @@ export class GildedRose {
     const agedBrieName = "Aged Brie";
     const backstageName = "Backstage passes to a TAFKAL80ETC concert";
     const sulfurasName = "Sulfuras, Hand of Ragnaros";
-    if (item.name != agedBrieName && item.name != backstageName) {
-      if (item.name != sulfurasName) {
-        item.quality = item.quality - 1;
-      }
-    } else {
-      if (item.name == backstageName) {
-        if (item.sellIn < 6) {
-          item.quality = item.quality + 3;
-        } else if (item.sellIn < 11) {
-          item.quality = item.quality + 2;
-        } else {
-          item.quality = item.quality + 1;
-        }
-      }
-      if (item.name == agedBrieName) {
+    if (item.name == backstageName) {
+      if (item.sellIn < 6) {
+        item.quality = item.quality + 3;
+      } else if (item.sellIn < 11) {
+        item.quality = item.quality + 2;
+      } else {
         item.quality = item.quality + 1;
       }
+    } else if (item.name == agedBrieName) {
+      item.quality = item.quality + 1;
+    } else if (item.name != sulfurasName) {
+      item.quality = item.quality - 1;
     }
     if (item.name != sulfurasName) {
       item.sellIn = item.sellIn - 1;
