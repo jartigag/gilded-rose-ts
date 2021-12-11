@@ -26,14 +26,17 @@ export class GildedRose {
         item.quality = item.quality - 1;
       }
     } else {
-      item.quality = item.quality + 1;
       if (item.name == backstageName) {
-        if (item.sellIn < 11) {
-          item.quality = item.quality + 1;
-        }
         if (item.sellIn < 6) {
+          item.quality = item.quality + 3;
+        } else if (item.sellIn < 11) {
+          item.quality = item.quality + 2;
+        } else {
           item.quality = item.quality + 1;
         }
+      }
+      if (item.name == agedBrieName) {
+        item.quality = item.quality + 1;
       }
     }
     if (item.name != sulfurasName) {
