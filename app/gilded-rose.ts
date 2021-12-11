@@ -47,7 +47,7 @@ export class GildedRose {
         if (item.name != backstageName) {
           item.quality = item.quality - 1;
         } else {
-          item.quality = item.quality - item.quality;
+          item.quality = 0;
         }
       } else {
         item.quality = item.quality + 1;
