@@ -37,5 +37,20 @@ describe("Gilded Rose", function () {
     expect(items[0].quality).toEqual(2);
   });
 
+  const agedBrie = ["Aged Brie", 1, 50];
+  const agedBrieExpired = ["Aged Brie", 2, 49];
+  const backstageTicketIncrementsBy1 = ["Backstage passes to a TAFKAL80ETC concert", 15, 50];
+  const backstageTicketIncrementsBy2 = ["Backstage passes to a TAFKAL80ETC concert", 10, 49];
+  const backstageTicketIncrementsBy3 = ["Backstage passes to a TAFKAL80ETC concert", 5, 48];
+
+  const items = [agedBrie, agedBrieExpired, backstageTicketIncrementsBy1, backstageTicketIncrementsBy2, backstageTicketIncrementsBy3];
+
+  it.each(items)("Quality must not go over 50 (%s)", function (name: string, sellIn: number, quality: number) {
+    const item = new Item(name, sellIn, quality);
+    const gildedRose = new GildedRose([item]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toEqual(50);
+  });
+
 
 });
