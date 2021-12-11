@@ -6,4 +6,10 @@ describe("Gilded Rose", function () {
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toEqual(6);
   });
+
+  it("Quality drops twice as fast when the date has passed", function () {
+    const gildedRose = new GildedRose([new Item("Elixir of the Mongoose", 0, 7)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toEqual(5);
+  });
 });
