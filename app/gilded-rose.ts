@@ -8,6 +8,45 @@ export class Item {
     this.sellIn = sellIn;
     this.quality = quality;
   }
+
+  updateSellIn() {
+    this.sellIn--;
+  }
+
+  updateQuality() {
+    if (this.sellIn < 0) {
+      this.quality--;
+    }
+    this.quality--;
+  }
+}
+
+class Sulfuras extends Item {
+  updateSellIn() {}
+  updateQuality() {}
+}
+
+class BackstagePasses extends Item {
+  updateQuality() {
+    if (this.sellIn < 0) {
+      this.quality = 0;
+    } else if (this.sellIn <= 5) {
+      this.quality += 3;
+    } else if (this.sellIn <= 10) {
+      this.quality += 2;
+    } else {
+      this.quality++;
+    }
+  }
+}
+
+class AgedBrie extends Item {
+  updateQuality() {
+    this.quality++;
+    if (this.sellIn < 0) {
+      this.quality++;
+    }
+  }
 }
 
 export class GildedRose {
@@ -22,33 +61,19 @@ export class GildedRose {
     const backstageName = "Backstage passes to a TAFKAL80ETC concert";
     const sulfurasName = "Sulfuras, Hand of Ragnaros";
 
-    if (item.name === sulfurasName) {
-      return item;
+    if (item.name === agedBrieName) {
+      item = new AgedBrie(item.name, item.sellIn, item.quality);
     }
-
-    item.sellIn--;
-
     if (item.name === backstageName) {
-      if (item.sellIn < 0) {
-        item.quality = 0;
-      } else if (item.sellIn <= 5) {
-        item.quality += 3;
-      } else if (item.sellIn <= 10) {
-        item.quality += 2;
-      } else {
-        item.quality++;
-      }
-    } else if (item.name === agedBrieName) {
-      item.quality++;
-      if (item.sellIn < 0) {
-        item.quality++;
-      }
-    } else {
-      if (item.sellIn < 0) {
-        item.quality--;
-      }
-      item.quality--;
+      item = new BackstagePasses(item.name, item.sellIn, item.quality);
     }
+
+    if (item.name === sulfurasName) {
+      item = new Sulfuras(item.name, item.sellIn, item.quality);
+    }
+
+    item.updateSellIn();
+    item.updateQuality();
 
     if (item.quality < 0) {
       item.quality = 0;
