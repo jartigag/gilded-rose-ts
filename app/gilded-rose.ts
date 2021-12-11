@@ -26,10 +26,12 @@ export class GildedRose {
       return item;
     }
 
+    item.sellIn = item.sellIn - 1;
+
     if (item.name == backstageName) {
-      if (item.sellIn < 6) {
+      if (item.sellIn <= 5) {
         item.quality = item.quality + 3;
-      } else if (item.sellIn < 11) {
+      } else if (item.sellIn <= 10) {
         item.quality = item.quality + 2;
       } else {
         item.quality = item.quality + 1;
@@ -39,8 +41,6 @@ export class GildedRose {
     } else {
       item.quality = item.quality - 1;
     }
-
-    item.sellIn = item.sellIn - 1;
 
     if (item.sellIn < 0) {
       if (item.name != agedBrieName) {
