@@ -18,4 +18,10 @@ describe("Gilded Rose", function () {
     const items = gildedRose.updateQuality();
     expect(items[0].quality).toEqual(0);
   });
+
+  it("Aged Brie quality increase when in date has passed", function () {
+    const gildedRose = new GildedRose([new Item("Aged Brie", 0, 0)]);
+    const items = gildedRose.updateQuality();
+    expect(items[0].quality).toEqual(2);
+  });
 });
